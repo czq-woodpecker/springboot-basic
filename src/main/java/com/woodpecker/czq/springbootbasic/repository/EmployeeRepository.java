@@ -1,6 +1,7 @@
 package com.woodpecker.czq.springbootbasic.repository;
 
 import com.woodpecker.czq.springbootbasic.model.Employee;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +23,21 @@ public class EmployeeRepository {
 
     public static List<Employee> selectEmployees() {
         return employees;
+    }
+
+    public static boolean addEmployee(Employee employee) {
+        if (checkEmployee(employee)) {
+            employees.add(employee);
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean checkEmployee(Employee employee) {
+        return employee != null
+                && employee.getId() != null
+                && !StringUtils.isEmpty(employee.getName())
+                && employee.getAge() != null
+                && !StringUtils.isEmpty(employee.getGender());
     }
 }

@@ -3,6 +3,7 @@ package com.woodpecker.czq.springbootbasic.controller;
 import com.woodpecker.czq.springbootbasic.model.Employee;
 import com.woodpecker.czq.springbootbasic.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,5 +18,10 @@ public class EmployeeController {
     @GetMapping("/employees")
     public List<Employee> getEmployees() {
         return EmployeeRepository.selectEmployees();
+    }
+
+    @PostMapping("/employee/add")
+    public boolean addEmployee(Employee employee) {
+        return EmployeeRepository.addEmployee(employee);
     }
 }
